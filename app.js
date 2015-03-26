@@ -1,8 +1,18 @@
-;(function (root) {
+;(function (root, listener) {
 
   function App () {
     this.routes = {};
+    this.bind();
     this.setup();
+  };
+
+  App.prototype.bind = function () {
+    listener('hashchange', this.onHasChange.bind(this), false);
+  };
+
+  App.prototype.onHasChange = function () {
+    this.setup();
+    this.start();
   };
 
   App.prototype.register = function (options) {
@@ -11,8 +21,6 @@
         callback: options[options.routes[item]],
         match: this.createMatch(item)
       };
-
-      console.log(this.createMatch(item));
     }.bind(this))
   };
 
@@ -28,6 +36,7 @@
 
   App.prototype.start = function () {
     var actual;
+
     Object.keys(this.routes).forEach(function (route) {
       actual = this.routes[route];
 
@@ -46,20 +55,25 @@
     var hash = document.location.hash.replace(/#/, '');
     this.options = {
       origin: document.location.origin,
-      hash:  hash === '' ? '' : hash
+      hash: hash
     }
   };
 
   root.App = new App();
 
-} (this));
+} (window, window.addEventListener));
 
 
 App.register({
   routes: {
     '': 'foo',
-    '/page/:id/a/:seila': 'page',
+    '/page/:id': 'singlePage',
+    '/page/:id/teste/:seila': 'page',
     '/bar/:id': 'bar'
+  },
+
+  singlePage: function () {
+    console.log('single');
   },
 
   foo: function () {
@@ -67,7 +81,7 @@ App.register({
   },
 
   page: function () {
-    console.log('thats page');
+    console.log('thats page of mauricio');
   },
 
   bar: function () {
