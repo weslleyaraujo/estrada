@@ -22,6 +22,8 @@
         match: this.createMatch(item)
       };
     }.bind(this))
+
+    return this;
   };
 
   App.prototype.createMatch = function (route) {
@@ -39,9 +41,32 @@
 
     Object.keys(this.routes).forEach(function (route) {
       actual = this.routes[route];
+      var bawords = route.split('/').filter(function (item) {
+        if(!item.match(/:/)) {
+          return (item)
+        }
+      });
 
       if (this.isMatch(actual.match)) {
-        actual.callback.call();
+        route.split('/').filter(function (item) {
+          bawords.forEach(function (word) {
+            if (word === item) {
+              item = null;
+            }
+          })
+          return item;
+        })
+
+        var x = this.options.hash.split('/').filter(function (item) {
+          bawords.forEach(function (word) {
+            if (word === item) {
+              item = null;
+            }
+          })
+          return item;
+        });
+
+        actual.callback.apply(this, x);
       }
 
     }.bind(this))
@@ -81,7 +106,7 @@ App.register({
   },
 
   page: function () {
-    console.log('thats page of mauricio');
+    console.log(arguments);
   },
 
   bar: function () {
