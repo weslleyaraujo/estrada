@@ -26,6 +26,20 @@
     return this;
   };
 
+  App.prototype.getParameters = function (route) {
+    var args = [],
+        actual = this.options.hash.split('/');
+
+    route = route.split('/');
+    route.forEach(function (item, index) {
+      if (item.match(/:/)) {
+        args.push(actual[index]);
+      }
+    });
+
+    return args;
+  };
+
   App.prototype.createMatch = function (route) {
     if (route === "") {
       return new RegExp(/^\s*$/);
@@ -37,36 +51,13 @@
   },
 
   App.prototype.start = function () {
-    var actual;
+    var actual, bawords;
 
     Object.keys(this.routes).forEach(function (route) {
       actual = this.routes[route];
-      var bawords = route.split('/').filter(function (item) {
-        if(!item.match(/:/)) {
-          return (item)
-        }
-      });
 
       if (this.isMatch(actual.match)) {
-        route.split('/').filter(function (item) {
-          bawords.forEach(function (word) {
-            if (word === item) {
-              item = null;
-            }
-          })
-          return item;
-        })
-
-        var x = this.options.hash.split('/').filter(function (item) {
-          bawords.forEach(function (word) {
-            if (word === item) {
-              item = null;
-            }
-          })
-          return item;
-        });
-
-        actual.callback.apply(this, x);
+        actual.callback.apply(this, this.getParameters(route));
       }
 
     }.bind(this))
