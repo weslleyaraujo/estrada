@@ -29,7 +29,6 @@
   App.prototype.getParameters = function (route) {
     var args = [],
         actual = this.options.hash.split('/');
-
     route = route.split('/');
     route.forEach(function (item, index) {
       if (item.match(/:/)) {
@@ -85,7 +84,12 @@ App.register({
     '': 'foo',
     '/page/:id': 'singlePage',
     '/page/:id/teste/:seila': 'page',
-    '/bar/:id': 'bar'
+    '/bar/:id': 'bar',
+    '/teste/:id/yea': 'yea'
+  },
+
+  yea: function (id) {
+    console.log('uhul', id);
   },
 
   singlePage: function () {
