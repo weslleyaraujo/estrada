@@ -5,23 +5,31 @@
   <title>IDK</title>
 </head>
 <body>
-  <script src="app.js"></script>
 
   <a href="#/page/1">
     Page 1
   </a>
 
-  <a href="#/teste/auhsauhsauhs/yea">
-    YEA
-  </a>
+  <script src="app.js"></script>
+  <script>
+    App.register({
+      routes: {
+        '': 'index',
+        '/page/:id': 'page',
+        '/example': ''
+      },
 
-  <a href="#/page/1/teste/2">
-    Page 1 teste 2
-  </a>
+      index: function () {
+        console.log('index callback!');
+      },
 
-  <a href="#/bar/1">
-    Bar
-  </a>
+      page: function (id) {
+        console.log('page callback!', id);
+      }
+    });
+
+    App.start();
+  </script>
 
 </body>
 </html>
