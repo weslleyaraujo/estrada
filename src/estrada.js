@@ -1,42 +1,42 @@
 ;(function (root, listener) {
 
-  function App () {
+  function Estrada () {
     this.routes = {};
     this.bind();
     this.setup();
-  };
+  }
 
-  App.prototype.bind = function () {
+  Estrada.prototype.bind = function () {
     listener('hashchange', this.onHasChange.bind(this), false);
   };
 
-  App.prototype.onHasChange = function () {
+  Estrada.prototype.onHasChange = function () {
     this.setup();
     this.start();
   };
 
-  App.prototype.register = function (options) {
+  Estrada.prototype.register = function (options) {
     Object.keys(options.routes).forEach(function (item, index) {
       this.routes[item] = {
         callback: this.getCallback(options[options.routes[item]]),
         match: this.createMatch(item)
       };
-    }.bind(this))
+    }.bind(this));
 
     return this;
   };
 
-  App.prototype.getCallback = function (fn) {
+  Estrada.prototype.getCallback = function (fn) {
     return typeof fn === 'function' ? fn : function () {
       console.log('[router]: callback not found for this route!');
     };
   };
 
-  App.prototype.not = function (fn) {
+  Estrada.prototype.not = function (fn) {
     return typeof fn === 'function' ? fn : function () { console.log('yea');};
   };
 
-  App.prototype.getParameters = function (route) {
+  Estrada.prototype.getParameters = function (route) {
     var args = [],
         actual = this.options.hash.split('/');
     route = route.split('/');
@@ -49,7 +49,7 @@
     return args;
   };
 
-  App.prototype.createMatch = function (route) {
+  Estrada.prototype.createMatch = function (route) {
     route = this.prepareRoute(route);
     if (route === "/") {
       return new RegExp(/^\s*$/);
@@ -60,12 +60,12 @@
     }).join('\\/') + '$';
   };
 
-  App.prototype.prepareRoute = function (route) {
+  Estrada.prototype.prepareRoute = function (route) {
     return route.charAt(0) === '/' ? route : '/' + route; 
   };
 
-  App.prototype.start = function () {
-    var actual, bawords;
+  Estrada.prototype.start = function () {
+    var actual;
 
     Object.keys(this.routes).forEach(function (route) {
       actual = this.routes[route];
@@ -74,21 +74,21 @@
         actual.callback.apply(this, this.getParameters(route));
       }
 
-    }.bind(this))
+    }.bind(this));
   };
 
-  App.prototype.isMatch = function (regex) {
+  Estrada.prototype.isMatch = function (regex) {
     return !!this.options.hash.match(regex);
   };
 
-  App.prototype.setup = function () {
+  Estrada.prototype.setup = function () {
     var hash = document.location.hash.replace(/#/, '');
     this.options = {
       origin: document.location.origin,
       hash: hash
-    }
+    };
   };
 
-  root.App = new App();
+  root.Estrada = new Estrada();
 
 } (window, window.addEventListener));

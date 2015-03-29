@@ -1,0 +1,29 @@
+{
+  "name": "estrada",
+  "version": "0.0.1",
+  "description": "Lightwell javascript router!",
+  "main": "dist/estrada.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/weslleyaraujo/estrada.git"
+  },
+  "keywords": [
+    "router",
+    "javscript"
+  ],
+  "author": "Weslley Araujo <weslleyaraujo20@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/weslleyaraujo/estrada/issues"
+  },
+  "homepage": "https://github.com/weslleyaraujo/estrada",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jasmine": "^0.8.2",
+    "grunt-contrib-jshint": "^0.11.1",
+    "grunt-contrib-uglify": "^0.8.0"
+  }
+}
