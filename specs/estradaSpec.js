@@ -35,4 +35,40 @@ describe('#estrada', function () {
       });
     });
   });
+
+  describe('#prepareRoute', function () {
+    describe('prepares the route removing or adding a "/" in the first char', function () {
+      it('should return an string "/" since the argument is empty', function () {
+        expect(Estrada.prepareRoute('')).toBe('/')
+      });
+
+      it('should return an string "/foo"', function () {
+        expect(Estrada.prepareRoute('foo')).toBe('/foo')
+      });
+    });
+  });
+
+  describe('#createMatch', function () {
+    describe('creates a regex for each kind of route', function () {
+      it('should match only an empty string', function () {
+        var regex = Estrada.createMatch("/");
+
+        expect(!!"".match(regex)).toBe(true);
+      });
+
+      it('should match "/foo"', function () {
+        var regex = Estrada.createMatch("/foo");
+
+        expect(!!"/foo".match(regex)).toBe(true);
+      });
+
+      it('should match "/foo/{anything}"', function () {
+        var regex = Estrada.createMatch("/foo/:id");
+
+        expect(!!"/foo/1".match(regex)).toBe(true);
+        expect(!!"/foo/bar".match(regex)).toBe(true);
+        expect(!!"/foo/another-example".match(regex)).toBe(true);
+      });
+    });
+  });
 });

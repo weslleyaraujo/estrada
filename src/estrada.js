@@ -16,6 +16,7 @@
   };
 
   Estrada.prototype.register = function (options) {
+    options.routes = options.routes || {};
     Object.keys(options.routes).forEach(function (item, index) {
       this.routes[item] = {
         callback: this.callbackHandler(options[options.routes[item]]),
