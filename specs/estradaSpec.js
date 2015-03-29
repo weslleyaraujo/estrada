@@ -95,4 +95,17 @@ describe('#estrada', function () {
       });
     });
   });
+
+  describe('#getParameters', function () {
+    describe('get the parameters for the route', function () {
+      it('returns an array that contains foo', function () {
+        Estrada.options.hash = "/example/foo";
+        Estrada.register({
+          '/example/:id': ''
+        });
+
+        expect(Estrada.getParameters('/example/:id')).toContain('foo')
+      });
+    });
+  });
 });
