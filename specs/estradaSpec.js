@@ -71,4 +71,18 @@ describe('#estrada', function () {
       });
     });
   });
+
+  describe('#isMatch', function () {
+    describe('identifies if the actual url is a match', function () {
+      it('returns true if its a match', function () {
+        expect(Estrada.isMatch('/foo', /foo/)).toBe(true);
+        expect(Estrada.isMatch('/foo/1', /foo\/.*/)).toBe(true);
+      });
+
+      it('returns false if its not a match', function () {
+        expect(Estrada.isMatch('/bar', /foo/)).toBe(false);
+        expect(Estrada.isMatch('/bar/1', /foo\/.*/)).toBe(false);
+      });
+    });
+  });
 });

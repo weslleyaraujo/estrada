@@ -71,15 +71,15 @@
     Object.keys(this.routes).forEach(function (route) {
       actual = this.routes[route];
 
-      if (this.isMatch(actual.match)) {
+      if (this.isMatch(this.options.hash, actual.match)) {
         actual.callback.apply(this, this.getParameters(route));
       }
 
     }.bind(this));
   };
 
-  Estrada.prototype.isMatch = function (regex) {
-    return !!this.options.hash.match(regex);
+  Estrada.prototype.isMatch = function (hash, regex) {
+    return !!hash.match(regex);
   };
 
   Estrada.prototype.setup = function () {
