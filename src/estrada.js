@@ -15,6 +15,7 @@
     this.start();
   };
 
+  // specs: ok
   Estrada.prototype.register = function (options) {
     options.routes = options.routes || {};
     Object.keys(options.routes).forEach(function (item, index) {
@@ -27,6 +28,7 @@
     return this;
   };
 
+  // specs: ok
   Estrada.prototype.callbackHandler = function (fn) {
     return typeof fn === 'function' ? fn : function EstradaEmpty () {
       console.log('[router]: callback not found for this route!');
@@ -50,6 +52,7 @@
     return args;
   };
 
+  // specs: ok
   Estrada.prototype.createMatch = function (route) {
     route = this.prepareRoute(route);
     if (route === "/") {
@@ -61,6 +64,7 @@
     }).join('\\/') + '$';
   };
 
+  // specs: ok
   Estrada.prototype.prepareRoute = function (route) {
     return route.charAt(0) === '/' ? route : '/' + route; 
   };
@@ -82,10 +86,10 @@
     return !!hash.match(regex);
   };
 
+  // specs: ok
   Estrada.prototype.setup = function () {
     var hash = document.location.hash.replace(/#/, '');
     this.options = {
-      origin: document.location.origin,
       hash: hash
     };
   };

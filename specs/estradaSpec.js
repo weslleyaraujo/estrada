@@ -18,7 +18,7 @@ describe('#estrada', function () {
     });
   });
 
-  describe('#getCallback', function () {
+  describe('#callbackHandler', function () {
     describe('get the proper callback or an dumb function for the route', function () {
       it('returns "foo" when the callback is executed', function () {
         expect(Estrada.routes['/foo'].callback()).toEqual('foo');
@@ -75,7 +75,9 @@ describe('#estrada', function () {
   describe('#setup', function () {
     describe('setup options for the application handler', function () {
       it('remove unecessary characters from hash', function () {
-        
+        document.location.hash = '#/something';
+        Estrada.setup();
+        expect(Estrada.options.hash).toBe('/something');
       });
     });
   });
