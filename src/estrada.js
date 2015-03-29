@@ -18,7 +18,7 @@
   Estrada.prototype.register = function (options) {
     Object.keys(options.routes).forEach(function (item, index) {
       this.routes[item] = {
-        callback: this.getCallback(options[options.routes[item]]),
+        callback: this.callbackHandler(options[options.routes[item]]),
         match: this.createMatch(item)
       };
     }.bind(this));
@@ -26,8 +26,8 @@
     return this;
   };
 
-  Estrada.prototype.getCallback = function (fn) {
-    return typeof fn === 'function' ? fn : function () {
+  Estrada.prototype.callbackHandler = function (fn) {
+    return typeof fn === 'function' ? fn : function EstradaEmpty () {
       console.log('[router]: callback not found for this route!');
     };
   };

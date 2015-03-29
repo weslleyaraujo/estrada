@@ -37,6 +37,16 @@ module.exports = function (grunt) {
     }
   };
 
+  // # jasmine
+  config.jasmine = {
+    src: [
+      'src/estrada.js'
+    ],
+    options: {
+      specs: 'specs/*.js'
+    }
+  };
+
   // load tasks
   tasks.forEach(grunt.loadNpmTasks);
 
@@ -45,7 +55,8 @@ module.exports = function (grunt) {
 
   // main tasks
   grunt.registerTask('test', [
-    'jshint'
+    'jshint',
+    'jasmine'
   ]);
 
   grunt.registerTask('build', [
