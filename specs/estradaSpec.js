@@ -72,6 +72,14 @@ describe('#estrada', function () {
     });
   });
 
+  describe('#setup', function () {
+    describe('setup options for the application handler', function () {
+      it('remove unecessary characters from hash', function () {
+        
+      });
+    });
+  });
+
   describe('#isMatch', function () {
     describe('identifies if the actual url is a match', function () {
       it('returns true if its a match', function () {
