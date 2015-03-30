@@ -4,7 +4,7 @@
   "description": "Lightwell javascript router!",
   "main": "dist/estrada.js",
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt ci"
   },
   "repository": {
     "type": "git",
