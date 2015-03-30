@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Estrada - Demo</title>
+</head>
+<body>
+
+  <h1>Estrada router example</h1>
+  <p>Click in any link below and open your console</p>
+  <ul>
+    <li><a href="#">Index</a></li>
+    <li><a href="#/page/1">Getting parameters</a></li>
+    <li><a href="#/users/1/about/foo">Getting multiple parameters</a></li>
+    <li><a href="#/callback-missing">Missing callback</a></li>
+  </ul>
+
+  <script src="../dist/estrada.min.js"></script>
+  <script>
+    Estrada.register({
+      routes: {
+        '': 'index',
+        '/page/:id': 'page',
+        '/users/:id/about/:example': 'users',
+        'callback-missing': 'foo'
+      },
+
+      index: function () {
+        console.log('index callback!');
+      },
+
+      page: function (id) {
+        console.log('page callback!', id);
+      },
+
+      users: function (id, example) {
+        console.log('users callback!', id, example);
+      }
+    });
+
+    Estrada.start();
+  </script>
+
+</body>
+</html>
