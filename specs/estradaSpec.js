@@ -53,21 +53,21 @@ describe('#estrada', function () {
       it('should match only an empty string', function () {
         var regex = Estrada.createMatch("/");
 
-        expect(!!"".match(regex)).toBe(true);
+        expect(!!"".match(regex).length).toBe(true);
       });
 
       it('should match "/foo"', function () {
         var regex = Estrada.createMatch("/foo");
 
-        expect(!!"/foo".match(regex)).toBe(true);
+        expect(!!"/foo".match(regex).length).toBe(true);
       });
 
       it('should match "/foo/{anything}"', function () {
         var regex = Estrada.createMatch("/foo/:id");
 
-        expect(!!"/foo/1".match(regex)).toBe(true);
-        expect(!!"/foo/bar".match(regex)).toBe(true);
-        expect(!!"/foo/another-example".match(regex)).toBe(true);
+        expect(!!"/foo/1".match(regex).length).toBe(true);
+        expect(!!"/foo/bar".match(regex).length).toBe(true);
+        expect(!!"/foo/another-example".match(regex).length).toBe(true);
       });
     });
   });
