@@ -44,3 +44,6 @@ bower_components
 .bower-cache
 .bower-registry
 .bower-tmp
+
+### my conf ###
+bin/

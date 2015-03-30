@@ -4,7 +4,8 @@ module.exports = function (grunt) {
       tasks  = [
         'grunt-contrib-jasmine',
         'grunt-contrib-jshint',
-        'grunt-contrib-uglify'
+        'grunt-contrib-uglify',
+        'grunt-coveralls'
       ];
 
   // config pack name
@@ -38,13 +39,35 @@ module.exports = function (grunt) {
   };
 
   // # jasmine
-  config.jasmine = {
+  config.jasmine = {};
+  config.jasmine.coverage = {
     src: [
-      'src/estrada.js'
+      'dist/estrada.min.js'
     ],
     options: {
-      specs: 'specs/*.js'
+      specs: 'specs/*.js',
+      template: require('grunt-template-jasmine-istanbul'),
+      templateOptions: {
+        coverage: 'bin/coverage/coverage.json',
+        report: {
+          type: 'lcov',
+          options: {
+            dir: 'bin/coverage'
+          }
+        },
+        thresholds: {
+          lines: 75,
+          statements: 75,
+          branches: 75,
+          functions: 90
+        }
+      }
     }
+  };
+
+  // # coveralls
+  config.coveralls = {
+    src: 'bin/coverage/lcov.info'
   };
 
   // load tasks
@@ -60,7 +83,14 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('build', [
+    'test',
     'uglify'
+  ]);
+
+  grunt.registerTask('ci', [
+    'jshint',
+    'jasmine',
+    'coveralls'
   ]);
 
 };

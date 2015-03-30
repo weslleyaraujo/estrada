@@ -31,7 +31,7 @@ describe('#estrada', function () {
           }
         });
 
-        expect(Estrada.routes['/bar'].callback.name).toBe('EstradaEmpty');
+        expect(typeof Estrada.routes['/bar'].callback).toBe('function');
       });
     });
   });
