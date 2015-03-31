@@ -10,26 +10,26 @@ It was inspired by [Backbone Router](http://backbonejs.org/#Router).
 In order to start using Estrada you should include the main script into your page as:
 
 ```html
-	<script src="estrada.js" ></script>
+<script src="estrada.js" ></script>
 ```
 
 Then you can register your routes like:
 
 ```javascript
-  Estrada.register({
-    routes: {
-      '': 'index',
-      '/example': 'exampleHandler'
-    },
+Estrada.register({
+  routes: {
+    '': 'index',
+    '/example': 'exampleHandler'
+  },
 
-    index: {
-      console.log('index callback');
-    },
+  index: {
+    console.log('index callback');
+  },
 
-    exampleHandler: function () {
-      console.log('Example callback!');
-    }
-  });
+  exampleHandler: function () {
+    console.log('Example callback!');
+  }
+});
 ```
 
 Development...
