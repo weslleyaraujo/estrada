@@ -32,4 +32,6 @@ Estrada.register({
 });
 ```
 
-Development...
+## License
+
+[MIT](http://example.com)
