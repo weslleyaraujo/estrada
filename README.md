@@ -18,16 +18,33 @@ Then you can register your routes like:
 ```javascript
 Estrada.register({
   routes: {
-    '': 'index',
-    '/example': 'exampleHandler'
+    '': 'example'
   },
 
-  index: {
-    console.log('index callback');
+  example: function () {
+    // you callback for '' route
+    console.log('yay!');
+  }
+});
+```
+
+You can also register routes with multiple parameters like:
+
+```javascript
+Estrada.register({
+  routes: {
+    '/user/:id': 'user',
+    '/example/:id/foo/:slug': 'multiple'
   },
 
-  exampleHandler: function () {
-    console.log('Example callback!');
+  user: function (id) {
+    // you callback for '/user/:id' route
+    console.log('thats my callback for /user/:id', id);
+  },
+
+  multiple: function (id, slug) {
+    // you callback for '/example/:id/foo/:slug' route
+    console.log('thats my callback for /example/:id/foo/:slug', id, slug);
   }
 });
 ```
