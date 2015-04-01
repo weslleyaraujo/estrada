@@ -48,3 +48,4 @@ bower_components
 ### my conf ###
 bin/
 _SpecRunner.html
+.DS_Store
