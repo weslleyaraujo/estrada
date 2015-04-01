@@ -26,6 +26,8 @@ Estrada.register({
     console.log('yay!');
   }
 });
+
+Estrada.start();
 ```
 
 You can also register routes with multiple parameters like:
@@ -47,6 +49,8 @@ Estrada.register({
     console.log('thats my callback for /example/:id/foo/:slug', id, slug);
   }
 });
+
+Estrada.start();
 ```
 
 ## License
