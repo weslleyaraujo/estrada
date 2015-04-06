@@ -92,6 +92,7 @@ Estrada.start();
 ## Release History
 
 * v0.1.0 - First release
+* v0.1.1 - Creating release grunt task
 
 ## License
 
