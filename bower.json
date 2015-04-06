@@ -1,0 +1,22 @@
+{
+  "name": "estrada",
+  "version": "0.0.1",
+  "homepage": "https://github.com/weslleyaraujo/estrada",
+  "authors": [
+    "Weslley Araujo <weslleyaraujo20@gmail.com>"
+  ],
+  "description": "Very lightweight javascript router manager, no dependencies at all.",
+  "main": "dist/estrada.js",
+  "keywords": [
+    "javascript",
+    "router"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
