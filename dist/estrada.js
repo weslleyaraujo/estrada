@@ -23,30 +23,30 @@
  * */
 function Estrada () {
   this.routes = {};
-  this.bind();
-  this.setup();
+  this._bind();
+  this._setup();
 }
 
 /*
  * Bind listener event for page changes
  *
- * @method bind
+ * @method _bind
  * @return {Null}
  * */
-Estrada.prototype.bind = function () {
+Estrada.prototype._bind = function () {
   if (typeof window !== 'undefined') {
-    window.addEventListener('hashchange', this.onHasChange.bind(this), false);
+    window.addEventListener('hashchange', this._onHasChange.bind(this), false);
   }
 };
 
 /*
  * Event handler for page hash change
  *
- * @method onHasChange
+ * @method _onHasChange
  * @return {Null}
  * */
-Estrada.prototype.onHasChange = function () {
-  this.setup();
+Estrada.prototype._onHasChange = function () {
+  this._setup();
   this.start();
 };
 
@@ -60,8 +60,8 @@ Estrada.prototype.register = function (options) {
   options.routes = options.routes || {};
   Object.keys(options.routes).forEach(function (item, index) {
     this.routes[item] = {
-      callback: this.callbackHandler(options[options.routes[item]]),
-      match: this.createMatch(item)
+      callback: this._callbackHandler(options[options.routes[item]]),
+      match: this._createMatch(item)
     };
   }.bind(this));
 
@@ -71,11 +71,11 @@ Estrada.prototype.register = function (options) {
 /*
  * Get the proper callback for a route
  *
- * @method callbackHandler
+ * @method _callbackHandler
  * @param {Function} fn The function callback for the route
  * @return {Object} Estrada instance
  * */
-Estrada.prototype.callbackHandler = function (fn) {
+Estrada.prototype._callbackHandler = function (fn) {
   return typeof fn === 'function' ? fn : function EstradaEmpty () {
     console.log('[Estrada]: callback not found for this route!');
   };
@@ -84,15 +84,15 @@ Estrada.prototype.callbackHandler = function (fn) {
 /*
  * Get the parameters for the route
  *
- * @method getParameters
+ * @method _getParameters
  * @param {String} route The actual route
  * @return {Array} The parameters found on the route
  * */
-Estrada.prototype.getParameters = function (route) {
+Estrada.prototype._getParameters = function (route) {
   var args = [],
       actual = this.options.hash.split('/');
 
-  route = this.prepareRoute(route).split('/');
+  route = this._prepareRoute(route).split('/');
   route.forEach(function (item, index) {
     if (item.match(/:/)) {
       args.push(actual[index]);
@@ -102,8 +102,8 @@ Estrada.prototype.getParameters = function (route) {
   return args;
 };
 
-Estrada.prototype.createMatch = function (route) {
-  route = this.prepareRoute(route);
+Estrada.prototype._createMatch = function (route) {
+  route = this._prepareRoute(route);
   if (route === "/") {
     return new RegExp(/^\s*$/);
   }
@@ -113,7 +113,7 @@ Estrada.prototype.createMatch = function (route) {
   }).join('\\/') + '$';
 };
 
-Estrada.prototype.prepareRoute = function (route) {
+Estrada.prototype._prepareRoute = function (route) {
   return route.charAt(0) === '/' ? route : '/' + route; 
 };
 
@@ -123,18 +123,18 @@ Estrada.prototype.start = function () {
   Object.keys(this.routes).forEach(function (route) {
     actual = this.routes[route];
 
-    if (this.isMatch(this.options.hash, actual.match)) {
-      actual.callback.apply(this, this.getParameters(route));
+    if (this._isMatch(this.options.hash, actual.match)) {
+      actual.callback.apply(this, this._getParameters(route));
     }
 
   }.bind(this));
 };
 
-Estrada.prototype.isMatch = function (hash, regex) {
+Estrada.prototype._isMatch = function (hash, regex) {
   return !!hash.match(regex);
 };
 
-Estrada.prototype.setup = function () {
+Estrada.prototype._setup = function () {
   var hash = document.location.hash.replace(/#/, '');
   this.options = {
     hash: hash
