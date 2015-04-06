@@ -7,6 +7,12 @@ It was inspired by [Backbone Router](http://backbonejs.org/#Router).
 
 ## Basic Usage
 
+You can install estrada using bower:
+
+```
+bower install estrada
+```
+
 In order to start using Estrada you should include the main script into your page as:
 
 ```html
