@@ -6,6 +6,7 @@ module.exports = function (grunt) {
         'grunt-contrib-jshint',
         'grunt-contrib-uglify',
         'grunt-contrib-concat',
+        'grunt-bump',
         'grunt-coveralls'
       ];
 
