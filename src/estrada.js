@@ -60,7 +60,7 @@ Estrada.prototype.register = function (options) {
  * */
 Estrada.prototype.callbackHandler = function (fn) {
   return typeof fn === 'function' ? fn : function EstradaEmpty () {
-    console.log('[router]: callback not found for this route!');
+    console.log('[Estrada]: callback not found for this route!');
   };
 };
 
