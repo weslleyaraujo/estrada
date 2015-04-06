@@ -1,10 +1,11 @@
 {
   "name": "estrada",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Lightwell javascript router!",
   "main": "dist/estrada.js",
   "scripts": {
-    "test": "grunt ci"
+    "test": "grunt ci",
+    "release": "grunt "
   },
   "repository": {
     "type": "git",
