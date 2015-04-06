@@ -5,6 +5,7 @@ module.exports = function (grunt) {
         'grunt-contrib-jasmine',
         'grunt-contrib-jshint',
         'grunt-contrib-uglify',
+        'grunt-contrib-concat',
         'grunt-coveralls'
       ];
 
@@ -33,7 +34,7 @@ module.exports = function (grunt) {
     },
     scripts: {
       files: {
-        'dist/estrada.min.js': 'src/estrada.js'
+        'dist/estrada.min.js': 'dist/estrada.js'
       }
     }
   };
@@ -42,7 +43,7 @@ module.exports = function (grunt) {
   config.jasmine = {};
   config.jasmine.coverage = {
     src: [
-      'dist/estrada.min.js'
+      'dist/estrada.js'
     ],
     options: {
       specs: 'specs/*.js',
@@ -70,6 +71,18 @@ module.exports = function (grunt) {
     src: 'bin/coverage/lcov.info'
   };
 
+  // # concat
+  config.concat = {
+    dist: {
+      src: [
+        'src/umd/head.js',
+        'src/estrada.js',
+        'src/umd/foot.js'
+      ],
+      dest: 'dist/estrada.js'
+    }
+  };
+
   // load tasks
   tasks.forEach(grunt.loadNpmTasks);
 
@@ -84,6 +97,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'test',
+    'concat',
     'uglify'
   ]);
 
