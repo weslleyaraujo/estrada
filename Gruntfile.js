@@ -75,6 +75,9 @@ module.exports = function (grunt) {
   // # concat
   config.concat = {
     dist: {
+      options: {
+        banner: app.banner
+      },
       src: [
         'src/umd/head.js',
         'src/estrada.js',
