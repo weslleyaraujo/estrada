@@ -18,7 +18,7 @@ describe('#estrada', function () {
     });
   });
 
-  describe('#callbackHandler', function () {
+  describe('#_callbackHandler', function () {
     describe('get the proper callback or an dumb function for the route', function () {
       it('returns "foo" when the callback is executed', function () {
         expect(Estrada.routes['/foo'].callback()).toEqual('foo');
@@ -36,34 +36,34 @@ describe('#estrada', function () {
     });
   });
 
-  describe('#prepareRoute', function () {
+  describe('#_prepareRoute', function () {
     describe('prepares the route removing or adding a "/" in the first char', function () {
       it('should return an string "/" since the argument is empty', function () {
-        expect(Estrada.prepareRoute('')).toBe('/')
+        expect(Estrada._prepareRoute('')).toBe('/')
       });
 
       it('should return an string "/foo"', function () {
-        expect(Estrada.prepareRoute('foo')).toBe('/foo')
+        expect(Estrada._prepareRoute('foo')).toBe('/foo')
       });
     });
   });
 
-  describe('#createMatch', function () {
+  describe('#_createMatch', function () {
     describe('creates a regex for each kind of route', function () {
       it('should match only an empty string', function () {
-        var regex = Estrada.createMatch("/");
+        var regex = Estrada._createMatch("/");
 
         expect(!!"".match(regex).length).toBe(true);
       });
 
       it('should match "/foo"', function () {
-        var regex = Estrada.createMatch("/foo");
+        var regex = Estrada._createMatch("/foo");
 
         expect(!!"/foo".match(regex).length).toBe(true);
       });
 
       it('should match "/foo/{anything}"', function () {
-        var regex = Estrada.createMatch("/foo/:id");
+        var regex = Estrada._createMatch("/foo/:id");
 
         expect(!!"/foo/1".match(regex).length).toBe(true);
         expect(!!"/foo/bar".match(regex).length).toBe(true);
@@ -72,31 +72,31 @@ describe('#estrada', function () {
     });
   });
 
-  describe('#setup', function () {
+  describe('#_setup', function () {
     describe('setup options for the application handler', function () {
       it('remove unecessary characters from hash', function () {
         document.location.hash = '#/something';
-        Estrada.setup();
+        Estrada._setup();
         expect(Estrada.options.hash).toBe('/something');
       });
     });
   });
 
-  describe('#isMatch', function () {
+  describe('#_isMatch', function () {
     describe('identifies if the actual url is a match', function () {
       it('returns true if its a match', function () {
-        expect(Estrada.isMatch('/foo', /foo/)).toBe(true);
-        expect(Estrada.isMatch('/foo/1', /foo\/.*/)).toBe(true);
+        expect(Estrada._isMatch('/foo', /foo/)).toBe(true);
+        expect(Estrada._isMatch('/foo/1', /foo\/.*/)).toBe(true);
       });
 
       it('returns false if its not a match', function () {
-        expect(Estrada.isMatch('/bar', /foo/)).toBe(false);
-        expect(Estrada.isMatch('/bar/1', /foo\/.*/)).toBe(false);
+        expect(Estrada._isMatch('/bar', /foo/)).toBe(false);
+        expect(Estrada._isMatch('/bar/1', /foo\/.*/)).toBe(false);
       });
     });
   });
 
-  describe('#getParameters', function () {
+  describe('#_getParameters', function () {
     describe('get the parameters for the route', function () {
       it('returns an array that contains foo', function () {
         Estrada.options.hash = "/example/foo";
@@ -104,7 +104,7 @@ describe('#estrada', function () {
           '/example/:id': ''
         });
 
-        expect(Estrada.getParameters('/example/:id')).toContain('foo')
+        expect(Estrada._getParameters('/example/:id')).toContain('foo')
       });
     });
   });
