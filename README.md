@@ -1,5 +1,4 @@
-# Estrada [![Build Status](https://travis-ci.org/weslleyaraujo/estrada.svg?branch=master)](https://travis-ci.org/weslleyaraujo/estrada) [![Coverage Status](https://coveralls.io/repos/weslleyaraujo/estrada/badge.svg?branch=master)](https://coveralls.io/r/weslleyaraujo/estrada) [![Code Climate](https://codeclimate.com/github/weslleyaraujo/estrada/badges/gpa.svg)](https://codeclimate.com/github/weslleyaraujo/estrada)
-
+# Estrada [![Build Status](https://travis-ci.org/weslleyaraujo/estrada.svg?branch=master)](https://travis-ci.org/weslleyaraujo/estrada) [![Coverage Status](https://coveralls.io/repos/weslleyaraujo/estrada/badge.svg?branch=master)](https://coveralls.io/r/weslleyaraujo/estrada)
 
 Estrada is a lightwell router manager crafted with no dependencies and based to work on major browsers (IE9+).
 
@@ -89,6 +88,10 @@ __Usage:__
 ```javascript
 Estrada.start();
 ```
+
+## Release History
+
+* v0.1.0 - First release
 
 ## License
 
