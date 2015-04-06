@@ -63,7 +63,7 @@ Register routes and each callback.
 
 __Usage:__
 
-```
+```javascript
 Estrada.register({
   routes: {
     '/example': 'exampleCallback'
@@ -80,7 +80,7 @@ Starts the routes system.
 
 __Usage:__
 
-```
+```javascript
 Estrada.start();
 ```
 
