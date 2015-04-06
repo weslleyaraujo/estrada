@@ -10,6 +10,9 @@ module.exports = function (grunt) {
         'grunt-coveralls'
       ];
 
+  // get patch if its a release
+  app.patch = grunt.option('patch');
+
   // config pack name
   app.pack = grunt.config('pkg', grunt.file.readJSON('package.json'));
 
@@ -126,5 +129,11 @@ module.exports = function (grunt) {
     'jasmine',
     'coveralls'
   ]);
+
+  grunt.registerTask('release', function () {
+		grunt.task.run('bump-only%patch%'.replace('%patch%', app.patch ? ':' + app.patch : ''));
+    grunt.task.run('build');
+    grunt.task.run('bump-commit');
+  });
 
 };
