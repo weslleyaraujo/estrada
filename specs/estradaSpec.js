@@ -73,7 +73,7 @@ describe('#estrada', function () {
   });
 
   describe('#_setup', function () {
-    describe('_setup options for the application handler', function () {
+    describe('setup options for the application handler', function () {
       it('remove unecessary characters from hash', function () {
         document.location.hash = '#/something';
         Estrada._setup();

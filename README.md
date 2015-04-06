@@ -53,6 +53,37 @@ Estrada.register({
 Estrada.start();
 ```
 
+## Documentation
+
+### Estrada.register ({ routes: {}, ...callbacks })
+Register routes and each callback.
+
+- `{ routes: {} }` (object): the routes object
+- `{ ..callbacks }` (function): your routes callbacks
+
+__Usage:__
+
+```
+Estrada.register({
+  routes: {
+    '/example': 'exampleCallback'
+  },
+
+  exampleCallback: function () {
+    // callback
+  }
+})
+```
+
+### Estrada.start ()
+Starts the routes system.
+
+__Usage:__
+
+```
+Estrada.start();
+```
+
 ## License
 
 [MIT](http://example.com)
