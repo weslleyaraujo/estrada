@@ -6,6 +6,7 @@ describe('#estrada', function () {
         },
 
         fooCallback: function () {
+          console.log('===============> foo called');
           return 'foo';
         }
       });
@@ -105,6 +106,14 @@ describe('#estrada', function () {
         });
 
         expect(Estrada._getParameters('/example/:id')).toContain('foo')
+      });
+    });
+  });
+
+  describe('#navigate', function () {
+    describe('navigate to an url an exec it callback if it was previously registered', function () {
+      it('exec the callback for "/example/spy"', function () {
+        Estrada.navigate('/foo');
       });
     });
   });
