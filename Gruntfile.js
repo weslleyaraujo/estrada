@@ -134,7 +134,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('release', function () {
-		grunt.task.run('bump-only%patch%'.replace('%patch%', app.patch ? ':' + app.patch : ''));
+    grunt.task.run('bump-only%patch%'.replace('%patch%', app.patch ? ':' + app.patch : ''));
     grunt.task.run('build');
     grunt.task.run('bump-commit');
   });
