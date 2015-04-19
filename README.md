@@ -93,6 +93,7 @@ Estrada.start();
 
 * v0.1.0 - First release
 * v0.1.1 - Creating release grunt task
+* v0.1.2 - Fix bug when route was triggered by undefined param
 
 ## License
 
