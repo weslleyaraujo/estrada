@@ -1,14 +1,17 @@
 describe('#estrada', function () {
   beforeEach(function () {
-      Estrada.register({
-        routes: {
-          '/foo': 'fooCallback'
-        },
+    document.location.hash = "";
 
-        fooCallback: function () {
-          return 'foo';
-        }
-      });
+    Estrada.register({
+      routes: {
+        '/foo': 'fooCallback'
+      },
+
+      fooCallback: function () {
+        return 'foo';
+      }
+    });
+
   });
 
   describe('#register', function () {
@@ -108,4 +111,16 @@ describe('#estrada', function () {
       });
     });
   });
+
+  describe('#navigate', function () {
+    it('navigates into a url', function () {
+      var spy = spyOn(Estrada.routes['/foo'], 'callback');
+
+      Estrada.navigate('/foo');
+      Estrada.start();
+
+      expect(spy).toHaveBeenCalled();
+    });
+  });
+
 });

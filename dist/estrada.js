@@ -193,5 +193,17 @@ Estrada.prototype._setup = function () {
   return this;
 };
 
+/*
+ * Navigate into a url
+ *
+ * @method navigate
+ * @public
+ * @return {Null}
+ * */
+Estrada.prototype.navigate = function (hash) {
+  hash = hash || '';
+  document.location.hash = hash;
+};
+
   return new Estrada();
 }));
