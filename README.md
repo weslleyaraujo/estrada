@@ -89,11 +89,21 @@ __Usage:__
 Estrada.start();
 ```
 
+### Estrada.navigate ()
+Navigate into a url
+
+__Usage:__
+
+```javascript
+Estrada.navigate('/example');
+```
+
 ## Release History
 
 * v0.1.0 - First release
 * v0.1.1 - Creating release grunt task
 * v0.1.2 - Fix bug when route was triggered by undefined param
+* v0.1.3 - Adding navigate method
 
 ## License
 
