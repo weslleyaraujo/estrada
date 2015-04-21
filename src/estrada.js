@@ -106,7 +106,7 @@ Estrada.prototype._createMatch = function (route) {
   }
 
   return route.split('/').map(function (item) {
-    return !!item.match(/:/) ? '[^\\/]*' : item;
+    return !!item.match(/:/) ? '[^\\/]+' : item;
   }).join('\\/') + '$';
 };
 

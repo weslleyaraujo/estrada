@@ -1,4 +1,4 @@
-/** estrada -v0.1.1
+/** estrada -v0.1.2
 * Copyright (c) 2015 Weslley Araujo <weslleyaraujo20@gmail.com>
 * Licensed MIT
 */
@@ -128,7 +128,7 @@ Estrada.prototype._createMatch = function (route) {
   }
 
   return route.split('/').map(function (item) {
-    return !!item.match(/:/) ? '[^\\/]*' : item;
+    return !!item.match(/:/) ? '[^\\/]+' : item;
   }).join('\\/') + '$';
 };
 
