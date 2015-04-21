@@ -1,15 +1,17 @@
 describe('#estrada', function () {
   beforeEach(function () {
-      Estrada.register({
-        routes: {
-          '/foo': 'fooCallback'
-        },
+    document.location.hash = "";
 
-        fooCallback: function () {
-          console.log('===============> foo called');
-          return 'foo';
-        }
-      });
+    Estrada.register({
+      routes: {
+        '/foo': 'fooCallback'
+      },
+
+      fooCallback: function () {
+        return 'foo';
+      }
+    });
+
   });
 
   describe('#register', function () {
@@ -111,10 +113,14 @@ describe('#estrada', function () {
   });
 
   describe('#navigate', function () {
-    describe('navigate to an url an exec it callback if it was previously registered', function () {
-      it('exec the callback for "/example/spy"', function () {
-        Estrada.navigate('/foo');
-      });
+    it('navigates into a url', function () {
+      var spy = spyOn(Estrada.routes['/foo'], 'callback');
+
+      Estrada.navigate('/foo');
+      Estrada.start();
+
+      expect(spy).toHaveBeenCalled();
     });
   });
+
 });
